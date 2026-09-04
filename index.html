@@ -35,7 +35,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      padding: 30px 16px 100px;
+      padding: 30px 16px 40px;
     }
 
     .wrap {
@@ -48,6 +48,7 @@
       border-radius: 18px;
       box-shadow: 0 30px 60px -20px rgba(9,20,50,0.45), 0 2px 0 rgba(255,255,255,0.4) inset;
       overflow: hidden;
+      position: relative;
     }
 
     .card-head {
@@ -56,6 +57,59 @@
       text-align: center;
       color: #fff;
       position: relative;
+    }
+
+    /* Acesso discreto (Menu de 3 pontos no topo superior direito) */
+    .top-menu-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s ease;
+    }
+    .top-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 48px;
+      right: 14px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 30;
+      overflow: hidden;
+    }
+    .dropdown-menu.show { display: block; }
+
+    .dropdown-item {
+      display: block;
+      padding: 10px 16px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: underline;
+      cursor: pointer;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .dropdown-item:hover {
+      background: var(--ivory-warm);
     }
 
     .logo-badge {
@@ -299,55 +353,6 @@
       width: 100%;
     }
 
-    /* Bottom Bar (Menu Fixo) */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: #ffffff;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 8px 12px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-      z-index: 40;
-    }
-
-    .nav-item {
-      background: none;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      color: var(--ink-soft);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      flex: 1;
-      padding: 4px 0;
-      transition: color .15s ease;
-    }
-
-    .nav-item svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--ink-soft);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke .15s ease;
-    }
-
-    .nav-item.active {
-      color: var(--navy);
-    }
-
-    .nav-item.active svg {
-      stroke: var(--navy);
-    }
-
     /* Modal Área da Equipe */
     .modal-overlay {
       display: none;
@@ -501,6 +506,12 @@
 <div class="wrap">
   <div class="card">
     <div class="card-head">
+      <!-- Botão Discreto de 3 Pontos -->
+      <button class="top-menu-btn" onclick="toggleDropdown(event)">&#8942;</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <button class="dropdown-item" onclick="openAdmin()">Área da equipe</button>
+      </div>
+
       <div class="logo-badge">
         <img src="https://i.imgur.com/8Qp2o8g.png" alt="Logo da Igreja">
       </div>
@@ -557,7 +568,7 @@
       <div class="wsp-box">
         <h3>Quer conversar conosco?</h3>
         <p>Se você sentir vontade de compartilhar algo, conversar ou receber mais informações, entre em contato conosco pelo WhatsApp da igreja. Estamos à disposição para te ouvir.</p>
-        <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20conversar" target="_blank" class="btn-wsp">
+        <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20conversar" target="_blank" class="btn-wsp">
           <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
           Falar no WhatsApp
         </a>
@@ -569,22 +580,6 @@
     </div>
   </div>
 </div>
-
-<!-- Menu Inferior -->
-<nav class="bottom-nav">
-  <button class="nav-item active" id="navOrderBtn" onclick="switchTab('pedido')">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-    <span>Fazer Pedido</span>
-  </button>
-  <button class="nav-item" id="navAdminBtn" onclick="switchTab('equipe')">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-    </svg>
-    <span>Área da Equipe</span>
-  </button>
-</nav>
 
 <!-- Modal Área da Equipe -->
 <div class="modal-overlay" id="modalOverlay">
@@ -650,6 +645,15 @@
     loadRandomVerse();
   });
 
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('dropdownMenu').classList.toggle('show');
+  }
+
+  document.addEventListener('click', () => {
+    document.getElementById('dropdownMenu').classList.remove('show');
+  });
+
   function setSigilo(val) {
     sigiloValue = val;
     document.getElementById('optSim').classList.toggle('active-yes', val === true);
@@ -713,22 +717,8 @@
     loadRandomVerse();
   }
 
-  function switchTab(tab) {
-    const navOrder = document.getElementById('navOrderBtn');
-    const navAdmin = document.getElementById('navAdminBtn');
-
-    if (tab === 'pedido') {
-      navOrder.classList.add('active');
-      navAdmin.classList.remove('active');
-      closeAdmin();
-    } else if (tab === 'equipe') {
-      navAdmin.classList.add('active');
-      navOrder.classList.remove('active');
-      openAdmin();
-    }
-  }
-
   function openAdmin() {
+    document.getElementById('dropdownMenu').classList.remove('show');
     document.getElementById('modalOverlay').classList.add('show');
     if (isAuthenticated) {
       document.getElementById('modalBodyLogin').style.display = 'none';
@@ -759,8 +749,6 @@
 
   function closeAdmin() {
     document.getElementById('modalOverlay').classList.remove('show');
-    document.getElementById('navOrderBtn').classList.add('active');
-    document.getElementById('navAdminBtn').classList.remove('active');
   }
 
   async function loadRequests() {
