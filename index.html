@@ -487,36 +487,38 @@
 
     .req-item {
       position: relative;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
       background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
 
     .req-del {
       position: absolute;
-      top: 12px; right: 12px;
+      top: 14px; right: 16px;
       background: none;
       border: none;
       color: #B4443B;
-      font-size: 11.5px;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
       text-decoration: underline;
     }
 
-    .req-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; padding-right: 45px; }
-    .req-name { font-weight: 700; font-size: 14px; color: var(--navy); }
-    .req-date { font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
-    .req-text { font-size: 13.5px; line-height: 1.5; color: var(--ink); word-break: break-word; }
+    .req-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; padding-right: 50px; }
+    .req-name { font-weight: 700; font-size: 14.5px; color: var(--navy); }
+    .req-date { font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
+    .req-text { font-size: 14px; line-height: 1.55; color: var(--ink); word-break: break-word; }
     .req-sigilo {
       display: inline-block;
-      margin-top: 8px;
-      font-size: 11px;
+      margin-top: 10px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--navy);
       background: var(--ivory-warm);
-      padding: 3px 9px;
+      padding: 4px 10px;
       border-radius: 20px;
     }
 
@@ -672,7 +674,7 @@
 </div>
 
 <script>
-  const SHEETDB_API = 'https://sheetdb.io/api/v1/yuzj8taeme61x';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiwfaJ_7d2dHsxilQIRhwK20x6hi0e6xpgl1IpaXqhkReFZJunqLpaElue2KJlonPabw/exec';
   let sigiloValue = null;
   let currentItems = [];
   let isAuthenticated = false;
@@ -738,16 +740,12 @@
     };
 
     try {
-      const response = await fetch(SHEETDB_API, {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: [entry] })
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(entry)
       });
-
-      if (!response.ok) throw new Error('Erro na rede');
 
       document.getElementById('formArea').style.display = 'none';
       document.getElementById('confirmArea').classList.add('show');
@@ -812,11 +810,11 @@
     listEl.innerHTML = '<div class="loading-state">Carregando pedidos...</div>';
 
     try {
-      const response = await fetch(SHEETDB_API);
+      const response = await fetch(SCRIPT_URL);
       if (!response.ok) throw new Error('Erro ao carregar');
       const rows = await response.json();
 
-      currentItems = rows.reverse(); // Mais recentes primeiro
+      currentItems = rows.reverse();
 
       if (currentItems.length === 0) {
         listEl.innerHTML = '<div class="empty-state">Nenhum pedido recebido ainda.</div>';
@@ -835,7 +833,6 @@
         const texto = escapeHtml(it.pedido || '');
 
         html += `<div class="req-item">
-          <button class="req-del" onclick="deleteRequest('${escapeHtml(it.pedido || '')}')">excluir</button>
           <div class="req-top">
             <span class="req-name">${nome}</span>
             <span class="req-date">${dtStr}</span>
@@ -847,20 +844,6 @@
       listEl.innerHTML = html;
     } catch(e) {
       listEl.innerHTML = '<div class="empty-state">Não foi possível carregar os pedidos agora.</div>';
-    }
-  }
-
-  async function deleteRequest(pedidoTexto) {
-    if (!confirm('Deseja realmente excluir este pedido?')) return;
-
-    try {
-      const response = await fetch(`${SHEETDB_API}/pedido/${encodeURIComponent(pedidoTexto)}`, {
-        method: 'DELETE'
-      });
-      if (!response.ok) throw new Error('Erro ao excluir');
-      loadRequests();
-    } catch(e) {
-      alert('Não foi possível excluir este pedido agora.');
     }
   }
 
