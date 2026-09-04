@@ -60,7 +60,6 @@
       position: relative;
     }
 
-    /* Acesso discreto (Menu de 3 pontos no topo superior direito) */
     .top-menu-btn {
       position: absolute;
       top: 14px;
@@ -183,6 +182,41 @@
 
     textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
 
+    .audio-wsp-banner {
+      background: #eafaf1;
+      border: 1.5px dashed #25D366;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .audio-wsp-banner p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .btn-audio-wsp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--wsp);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 11px 16px;
+      border-radius: 9px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.25);
+      width: 100%;
+      transition: transform .1s ease;
+    }
+    .btn-audio-wsp:hover { transform: translateY(-1px); }
+    .btn-audio-wsp svg { width: 18px; height: 18px; fill: #fff; }
+
     .toggle-row { display: flex; gap: 10px; }
 
     .toggle-opt {
@@ -239,42 +273,6 @@
     button.submit:active { transform: translateY(0); }
     button.submit:disabled { opacity: 0.6; cursor: default; transform: none; }
 
-    /* Caixa de Atalho para Áudio via WhatsApp (Abaixo do botão de enviar) */
-    .audio-wsp-banner {
-      background: #eafaf1;
-      border: 1.5px dashed #25D366;
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .audio-wsp-banner p {
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .btn-audio-wsp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--wsp);
-      color: #fff;
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 11px 16px;
-      border-radius: 9px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37,211,102,0.25);
-      width: 100%;
-      transition: transform .1s ease;
-    }
-    .btn-audio-wsp:hover { transform: translateY(-1px); }
-    .btn-audio-wsp svg { width: 18px; height: 18px; fill: #fff; }
-
     .error {
       color: #B4443B;
       font-size: 13px;
@@ -303,7 +301,6 @@
       letter-spacing: 0.02em;
     }
 
-    /* Estado de confirmação */
     .confirm {
       display: none;
       padding: 40px 30px 35px;
@@ -392,7 +389,6 @@
       width: 100%;
     }
 
-    /* Modal Área da Equipe */
     .modal-overlay {
       display: none;
       position: fixed; inset: 0;
@@ -425,7 +421,6 @@
 
     .modal-body { padding: 20px 22px; overflow-y: auto; }
 
-    /* Login Form Equipe */
     .login-box {
       display: flex;
       flex-direction: column;
@@ -532,7 +527,6 @@
       padding: 30px 10px;
     }
 
-    /* Rodapé com créditos */
     .footer-credits {
       text-align: center;
       font-size: 12px;
@@ -556,25 +550,19 @@
 <div class="wrap">
   <div class="card">
     <div class="card-head">
-      <!-- Botão Discreto de 3 Pontos -->
       <button class="top-menu-btn" onclick="toggleDropdown(event)">&#8942;</button>
       <div class="dropdown-menu" id="dropdownMenu">
         <button class="dropdown-item" onclick="openAdmin()">Área da equipe</button>
       </div>
 
-      <!-- Logo da Igreja -->
       <div class="logo-badge">
         <img src="https://i.ibb.co/v2H4KBX/logo-da-igreja.jpg" alt="Logo da Igreja">
       </div>
       
-      <!-- Cabeçalho Simplificado -->
       <h1>Formulário de Pedido de Oração</h1>
-      
-      <!-- Nome da Igreja -->
       <div class="greeting">Primeira Igreja Batista em Vaz Lobo</div>
     </div>
 
-    <!-- Área do Formulário -->
     <div id="formArea">
       <div class="card-body">
         <p class="intro">Você não precisa passar por tudo sozinho. Conte conosco! Deixe seu pedido de oração e estaremos intercedendo por você.</p>
@@ -586,8 +574,17 @@
           </div>
 
           <div class="field">
-            <label for="pedido">Pedido de Oração </label>
+            <label for="pedido">Pedido de Oração</label>
             <textarea id="pedido" placeholder="Compartilhe aqui o que está em seu coração..."></textarea>
+          </div>
+
+          <!-- Atalho para Enviar em Áudio via WhatsApp -->
+          <div class="audio-wsp-banner">
+            <p>🎙️ Prefere mandar seu pedido em áudio?</p>
+            <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20pedido%20de%20ora%C3%A7%C3%A3o%20em%20%C3%A1udio" target="_blank" class="btn-audio-wsp">
+              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
+              Enviar Áudio no WhatsApp
+            </a>
           </div>
 
           <div class="field">
@@ -602,15 +599,6 @@
           <div class="error" id="errorMsg">Por favor, preencha o campo de pedido de oração.</div>
           <button type="submit" class="submit" id="submitBtn" onclick="submitPrayer()">Enviar pedido</button>
         </form>
-
-        <!-- NOVO: Atalho para Enviar em Áudio via WhatsApp (Abaixo do botão de enviar) -->
-        <div class="audio-wsp-banner">
-          <p>🎙️ Prefere mandar seu pedido em áudio?</p>
-          <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20pedido%20de%20ora%C3%A7%C3%A3o%20em%20%C3%A1udio" target="_blank" class="btn-audio-wsp">
-            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
-            Enviar Áudio no WhatsApp
-          </a>
-        </div>
       </div>
 
       <div class="verse-block">
@@ -619,7 +607,6 @@
       </div>
     </div>
 
-    <!-- Tela de Confirmação -->
     <div class="confirm" id="confirmArea">
       <div class="confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -644,13 +631,11 @@
     </div>
   </div>
 
-  <!-- Rodapé com Crédito -->
   <footer class="footer-credits">
     Desenvolvido pela equipe de Comunicação PIBVL
   </footer>
 </div>
 
-<!-- Modal Área da Equipe -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-head">
@@ -658,7 +643,6 @@
       <button class="modal-close" onclick="closeAdmin()">&times;</button>
     </div>
 
-    <!-- Tela de Login -->
     <div class="modal-body" id="modalBodyLogin">
       <div class="login-box">
         <p>Por favor, insira a senha de acesso para visualizar os pedidos:</p>
@@ -670,7 +654,6 @@
       </div>
     </div>
 
-    <!-- Conteúdo do Painel (Exibido após senha correta) -->
     <div class="modal-body" id="modalBodyLogged" style="display: none;">
       <div class="report-bar">
         <button onclick="toggleReport()" id="reportToggleBtn">Gerar relatório</button>
@@ -689,6 +672,7 @@
 </div>
 
 <script>
+  const SHEETDB_API = 'https://sheetdb.io/api/v1/yuzj8taeme61x';
   let sigiloValue = null;
   let currentItems = [];
   let isAuthenticated = false;
@@ -749,18 +733,21 @@
     const entry = {
       nome: isSigilo ? 'Anônimo' : (nomeInput || 'Anônimo'),
       pedido: pedido,
-      sigilo: isSigilo,
+      sigilo: isSigilo ? 'Sim' : 'Não',
       data: new Date().toISOString()
     };
 
     try {
-      const id = 'pedido:' + Date.now() + ':' + Math.random().toString(36).slice(2,8);
-      
-      if (window.storage && typeof window.storage.set === 'function') {
-        await window.storage.set(id, JSON.stringify(entry), true);
-      } else {
-        localStorage.setItem(id, JSON.stringify(entry));
-      }
+      const response = await fetch(SHEETDB_API, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: [entry] })
+      });
+
+      if (!response.ok) throw new Error('Erro na rede');
 
       document.getElementById('formArea').style.display = 'none';
       document.getElementById('confirmArea').classList.add('show');
@@ -805,7 +792,7 @@
     const pass = document.getElementById('adminPass').value.trim();
     const passError = document.getElementById('passErrorMsg');
 
-    if (pass === '@1939') {
+    if (pass === '1939') {
       isAuthenticated = true;
       passError.style.display = 'none';
       document.getElementById('modalBodyLogin').style.display = 'none';
@@ -825,77 +812,52 @@
     listEl.innerHTML = '<div class="loading-state">Carregando pedidos...</div>';
 
     try {
-      let items = [];
+      const response = await fetch(SHEETDB_API);
+      if (!response.ok) throw new Error('Erro ao carregar');
+      const rows = await response.json();
 
-      if (window.storage && typeof window.storage.list === 'function') {
-        const list = await window.storage.list('pedido:', true);
-        if (list && list.keys && list.keys.length > 0) {
-          const keys = list.keys.slice().sort().reverse();
-          for (const k of keys) {
-            try {
-              const r = await window.storage.get(k, true);
-              if (r && r.value) {
-                const parsed = JSON.parse(r.value);
-                parsed._key = k;
-                items.push(parsed);
-              }
-            } catch(e) {}
-          }
-        }
-      } else {
-        const keys = Object.keys(localStorage).filter(k => k.startsWith('pedido:')).sort().reverse();
-        for (const k of keys) {
-          try {
-            const val = localStorage.getItem(k);
-            if (val) {
-              const parsed = JSON.parse(val);
-              parsed._key = k;
-              items.push(parsed);
-            }
-          } catch(e) {}
-        }
-      }
+      currentItems = rows.reverse(); // Mais recentes primeiro
 
-      currentItems = items;
-
-      if (items.length === 0) {
+      if (currentItems.length === 0) {
         listEl.innerHTML = '<div class="empty-state">Nenhum pedido recebido ainda.</div>';
         return;
       }
 
       let html = '';
-      for (const it of items) {
-        const dt = new Date(it.data);
-        const dtStr = dt.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' às ' + dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
-        const nome = escapeHtml(it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo'));
+      currentItems.forEach((it, index) => {
+        const dt = it.data ? new Date(it.data) : null;
+        const dtStr = dt && !isNaN(dt) 
+          ? dt.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' às ' + dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})
+          : 'Data recente';
+        
+        const isSigilo = it.sigilo === true || it.sigilo === 'Sim' || it.sigilo === 'true';
+        const nome = escapeHtml(isSigilo ? 'Anônimo' : (it.nome || 'Anônimo'));
         const texto = escapeHtml(it.pedido || '');
-        const keyAttr = escapeHtml(it._key);
 
         html += `<div class="req-item">
-          <button class="req-del" onclick="deleteRequest('${keyAttr}')">excluir</button>
+          <button class="req-del" onclick="deleteRequest('${escapeHtml(it.pedido || '')}')">excluir</button>
           <div class="req-top">
             <span class="req-name">${nome}</span>
             <span class="req-date">${dtStr}</span>
           </div>
           <div class="req-text">${texto}</div>
-          ${it.sigilo ? '<span class="req-sigilo">🔒 Pedido em sigilo</span>' : ''}
+          ${isSigilo ? '<span class="req-sigilo">🔒 Pedido em sigilo</span>' : ''}
         </div>`;
-      }
+      });
       listEl.innerHTML = html;
     } catch(e) {
       listEl.innerHTML = '<div class="empty-state">Não foi possível carregar os pedidos agora.</div>';
     }
   }
 
-  async function deleteRequest(key) {
+  async function deleteRequest(pedidoTexto) {
     if (!confirm('Deseja realmente excluir este pedido?')) return;
 
     try {
-      if (window.storage && typeof window.storage.delete === 'function') {
-        await window.storage.delete(key, true);
-      } else {
-        localStorage.removeItem(key);
-      }
+      const response = await fetch(`${SHEETDB_API}/pedido/${encodeURIComponent(pedidoTexto)}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Erro ao excluir');
       loadRequests();
     } catch(e) {
       alert('Não foi possível excluir este pedido agora.');
@@ -922,7 +884,8 @@
     let texto = `🙏 Pedidos de Oração — ${hoje}\n\n`;
 
     ordered.forEach((it, idx) => {
-      const nome = it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo');
+      const isSigilo = it.sigilo === true || it.sigilo === 'Sim' || it.sigilo === 'true';
+      const nome = isSigilo ? 'Anônimo' : (it.nome || 'Anônimo');
       texto += `${idx + 1}. ${nome}\n`;
       texto += `    ${it.pedido}\n\n`;
     });
