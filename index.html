@@ -1,67 +1,852 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Documento com Logo</title>
-    <style>
-        @page {
-            size: A4;
-            margin: 20mm 15mm;
-            background-color: #ffffff;
-        }
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333333;
-            line-height: 1.5;
-        }
-        .header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #ea2027;
-            margin-bottom: 25px;
-        }
-        .logo {
-            max-width: 220px;
-            height: auto;
-            margin-bottom: 12px;
-        }
-        .title {
-            font-size: 20pt;
-            font-weight: bold;
-            color: #1e272e;
-            margin: 10px 0 5px 0;
-        }
-        .subtitle {
-            font-size: 11pt;
-            color: #718093;
-            margin: 0;
-        }
-        .content {
-            font-size: 11pt;
-            margin-top: 20px;
-        }
-        .card {
-            background-color: #f8f9fa;
-            border-left: 4px solid #ea2027;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 0 4px 4px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido de Oração</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --navy: #182A5C;
+      --navy-deep: #101d42;
+      --sky: #35A6DE;
+      --sky-light: #7FCBEE;
+      --ivory: #FAF9F5;
+      --ivory-warm: #F2EFE6;
+      --ink: #1B2340;
+      --ink-soft: #55607E;
+      --line: #E4E1D6;
+      --ok: #2E7D5B;
+      --wsp: #25D366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 38%),
+        linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 45%, var(--sky) 100%);
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px 16px 100px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .card {
+      background: var(--ivory);
+      border-radius: 18px;
+      box-shadow: 0 30px 60px -20px rgba(9,20,50,0.45), 0 2px 0 rgba(255,255,255,0.4) inset;
+      overflow: hidden;
+    }
+
+    .card-head {
+      background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 55%, var(--sky) 130%);
+      padding: 36px 30px 30px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .logo-badge {
+      width: 80px; height: 80px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      padding: 10px;
+      overflow: hidden;
+    }
+    .logo-badge img { width: 100%; height: 100%; object-fit: contain; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .greeting {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--sky-light);
+    }
+
+    .card-body {
+      padding: 30px 30px 26px;
+    }
+
+    .intro {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(53,166,222,0.18);
+    }
+
+    textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+
+    .toggle-row { display: flex; gap: 10px; }
+
+    .toggle-opt {
+      flex: 1;
+      text-align: center;
+      padding: 11px 10px;
+      border-radius: 10px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .15s ease;
+      user-select: none;
+    }
+
+    .toggle-opt.active-yes {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+
+    .toggle-opt.active-no {
+      background: var(--sky);
+      border-color: var(--sky);
+      color: #fff;
+    }
+
+    .toggle-hint {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    button.submit {
+      width: 100%;
+      border: none;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--sky) 100%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15.5px;
+      padding: 15px;
+      border-radius: 11px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 10px 24px -8px rgba(24,42,92,0.5);
+    }
+
+    button.submit:hover { transform: translateY(-1px); }
+    button.submit:active { transform: translateY(0); }
+    button.submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    .error {
+      color: #B4443B;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .verse-block {
+      text-align: center;
+      padding: 20px 30px 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .verse {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .verse-ref {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Estado de confirmação */
+    .confirm {
+      display: none;
+      padding: 40px 30px 35px;
+      text-align: center;
+    }
+    .confirm.show { display: block; }
+
+    .confirm-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--sky));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .confirm-icon svg { width: 26px; height: 26px; }
+
+    .confirm h2 {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .confirm p {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin: 0 auto 22px;
+    }
+
+    .wsp-box {
+      background: var(--ivory-warm);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 16px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .wsp-box h3 {
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .wsp-box p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .confirm-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-wsp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--wsp);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 9px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+    }
+
+    .btn-wsp svg { width: 18px; height: 18px; fill: #fff; }
+
+    .new-request {
+      background: none;
+      border: 1.5px solid var(--line);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 11px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Bottom Bar (Menu Fixo) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #ffffff;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 12px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+      z-index: 40;
+    }
+
+    .nav-item {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--ink-soft);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      flex: 1;
+      padding: 4px 0;
+      transition: color .15s ease;
+    }
+
+    .nav-item svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--ink-soft);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke .15s ease;
+    }
+
+    .nav-item.active {
+      color: var(--navy);
+    }
+
+    .nav-item.active svg {
+      stroke: var(--navy);
+    }
+
+    /* Modal Área da Equipe */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(16,29,66,0.6);
+      align-items: center; justify-content: center;
+      padding: 20px;
+      z-index: 50;
+      backdrop-filter: blur(3px);
+    }
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 85vh;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+
+    .modal-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-head h3 { font-family: 'Lora', serif; font-size: 18px; color: var(--navy); }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--ink-soft); line-height: 1; }
+
+    .modal-body { padding: 20px 22px; overflow-y: auto; }
+
+    .report-bar { display: flex; gap: 10px; margin-bottom: 16px; }
+    .report-bar button {
+      flex: 1;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .report-bar button.secondary {
+      background: #fff;
+      color: var(--navy);
+      border: 1.5px solid var(--line);
+    }
+
+    .report-box { display: none; margin-bottom: 18px; }
+    .report-box.show { display: block; }
+    .report-box textarea {
+      width: 100%;
+      min-height: 200px;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink);
+      resize: vertical;
+    }
+
+    .report-copy-btn {
+      margin-top: 8px;
+      width: 100%;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--sky) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 11px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+
+    .copy-feedback {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ok);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .req-item {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .req-del {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: none;
+      border: none;
+      color: #B4443B;
+      font-size: 11.5px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .req-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; padding-right: 45px; }
+    .req-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+    .req-date { font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
+    .req-text { font-size: 13.5px; line-height: 1.5; color: var(--ink); word-break: break-word; }
+    .req-sigilo {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--ivory-warm);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .empty-state, .loading-state {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      padding: 30px 10px;
+    }
+
+    @media (max-width: 480px) {
+      .card-head { padding: 30px 20px 24px; }
+      .card-body { padding: 24px 20px 20px; }
+      .verse-block { padding: 18px 20px 22px; }
+      h1 { font-size: 24px; }
+    }
+  </style>
 </head>
 <body>
-    <div style="text-align: center; margin-bottom: 20px;">
-  <img src="https://i.imgur.com/8Qp2o8g.png" alt="Logo" style="max-width: 200px; height: auto;" />
-  <h2>Documento Atualizado</h2>
+
+<div class="wrap">
+  <div class="card">
+    <div class="card-head">
+      <div class="logo-badge">
+        <!-- Logo atualizada via Imgur -->
+        <img src="https://i.imgur.com/8Qp2o8g.png" alt="Logo da Igreja">
+      </div>
+      <div class="greeting">A paz do Senhor!</div>
+      <h1>Pedido de Oração</h1>
+    </div>
+
+    <!-- Área do Formulário -->
+    <div id="formArea">
+      <div class="card-body">
+        <p class="intro">Você não precisa passar por tudo sozinho. Conte conosco! Deixe seu pedido de oração e estaremos intercedendo por você.</p>
+
+        <form id="prayerForm" onsubmit="return false;">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="pedido">Pedido de Oração</label>
+            <textarea id="pedido" placeholder="Compartilhe aqui o que está em seu coração..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Deseja que seu pedido seja mantido em sigilo?</label>
+            <div class="toggle-row">
+              <div class="toggle-opt" id="optSim" onclick="setSigilo(true)">Sim</div>
+              <div class="toggle-opt" id="optNao" onclick="setSigilo(false)">Não</div>
+            </div>
+            <div class="toggle-hint">Seu pedido será tratado com sigilo. Ele será encaminhado ao nosso grupo de oração sem a identificação do seu nome. Apenas o pedido será compartilhado, para que possamos estar em oração por você.</div>
+          </div>
+
+          <div class="error" id="errorMsg">Por favor, preencha seu nome e o pedido de oração.</div>
+          <button type="submit" class="submit" id="submitBtn" onclick="submitPrayer()">Enviar pedido</button>
+        </form>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse" id="verseText">"Orai sem cessar."</div>
+        <div class="verse-ref" id="verseRef">1 Tessalonicenses 5:17</div>
+      </div>
+    </div>
+
+    <!-- Tela de Confirmação -->
+    <div class="confirm" id="confirmArea">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Pedido recebido</h2>
+      <p>Seu pedido foi enviado e será levado para o grupo de oração que estará orando no próximo culto de quarta-feira.</p>
+
+      <div class="wsp-box">
+        <h3>Quer conversar conosco?</h3>
+        <p>Se você sentir vontade de compartilhar algo, conversar ou receber mais informações, entre em contato conosco pelo WhatsApp da igreja. Estamos à disposição para te ouvir.</p>
+        <a href="https://wa.me/5500000000000?text=Ol%C3%A1%2C%20gostaria%20de%20conversar" target="_blank" class="btn-wsp">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+
+      <div class="confirm-actions">
+        <button class="new-request" onclick="resetForm()">Enviar outro pedido</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-    <div class="content">
-        <p>Este documento foi atualizado para garantir que a imagem da logo seja renderizada perfeitamente.</p>
+<!-- Menu Inferior -->
+<nav class="bottom-nav">
+  <button class="nav-item active" id="navOrderBtn" onclick="switchTab('pedido')">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <span>Fazer Pedido</span>
+  </button>
+  <button class="nav-item" id="navAdminBtn" onclick="switchTab('equipe')">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
+    <span>Área da Equipe</span>
+  </button>
+</nav>
+
+<!-- Modal Área da Equipe sem PIN -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Área da equipe</h3>
+      <button class="modal-close" onclick="closeAdmin()">&times;</button>
     </div>
+
+    <div class="modal-body" id="modalBodyLogged">
+      <div class="report-bar">
+        <button onclick="toggleReport()" id="reportToggleBtn">Gerar relatório</button>
+        <button class="secondary" onclick="loadRequests()">Atualizar lista</button>
+      </div>
+
+      <div class="report-box" id="reportBox">
+        <textarea id="reportText" readonly></textarea>
+        <button class="report-copy-btn" onclick="copyReport()">Copiar texto do relatório</button>
+        <div class="copy-feedback" id="copyFeedback">Copiado! Cole no grupo de oração.</div>
+      </div>
+
+      <div id="requestsList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let sigiloValue = null;
+  let currentItems = [];
+
+  const verses = [
+    { text: '"Orai sem cessar."', ref: '1 Tessalonicenses 5:17' },
+    { text: '"Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes e firmes que não sabes."', ref: 'Jeremias 33:3' },
+    { text: '"Confessai as vossas culpas uns aos outros, e orai uns pelos outros, para que sereis curados. A oração feita por um justo pode muito em seus efeitos."', ref: 'Tiago 5:16' },
+    { text: '"Não estejais inquietos por coisa alguma; antes as vossas petições sejam em tudo conhecidas diante de Deus pela oração e súplica, com ação de graças."', ref: 'Filipenses 4:6' },
+    { text: '"Perseverai em oração, velando nela com ação de graças."', ref: 'Colossenses 4:2' },
+    { text: '"Pedi, e dar-se-vos-á; buscai, e encontrareis; batei, e abrir-se-vos-á."', ref: 'Mateus 7:7' },
+    { text: '"E tudo o que pedirdes em oração, crendo, o recebereis."', ref: 'Mateus 21:22' }
+  ];
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+    document.getElementById('verseText').textContent = randomVerse.text;
+    document.getElementById('verseRef').textContent = randomVerse.ref;
+  });
+
+  function setSigilo(val) {
+    sigiloValue = val;
+    document.getElementById('optSim').classList.toggle('active-yes', val === true);
+    document.getElementById('optNao').classList.toggle('active-no', val === false);
+  }
+
+  async function submitPrayer() {
+    const nome = document.getElementById('nome').value.trim();
+    const pedido = document.getElementById('pedido').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+    const btn = document.getElementById('submitBtn');
+
+    if (!nome || !pedido) {
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    errorMsg.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const isSigilo = sigiloValue === true;
+    const entry = {
+      nome: isSigilo ? 'Anônimo' : nome,
+      pedido: pedido,
+      sigilo: isSigilo,
+      data: new Date().toISOString()
+    };
+
+    try {
+      const id = 'pedido:' + Date.now() + ':' + Math.random().toString(36).slice(2,8);
+      
+      if (window.storage && typeof window.storage.set === 'function') {
+        await window.storage.set(id, JSON.stringify(entry), true);
+      } else {
+        localStorage.setItem(id, JSON.stringify(entry));
+      }
+
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('confirmArea').classList.add('show');
+    } catch (e) {
+      errorMsg.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+      errorMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Enviar pedido';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('nome').value = '';
+    document.getElementById('pedido').value = '';
+    setSigilo(null);
+    document.getElementById('optSim').classList.remove('active-yes');
+    document.getElementById('optNao').classList.remove('active-no');
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Enviar pedido';
+    document.getElementById('confirmArea').classList.remove('show');
+    document.getElementById('formArea').style.display = 'block';
+
+    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+    document.getElementById('verseText').textContent = randomVerse.text;
+    document.getElementById('verseRef').textContent = randomVerse.ref;
+  }
+
+  function switchTab(tab) {
+    const navOrder = document.getElementById('navOrderBtn');
+    const navAdmin = document.getElementById('navAdminBtn');
+
+    if (tab === 'pedido') {
+      navOrder.classList.add('active');
+      navAdmin.classList.remove('active');
+      closeAdmin();
+    } else if (tab === 'equipe') {
+      navAdmin.classList.add('active');
+      navOrder.classList.remove('active');
+      openAdmin();
+    }
+  }
+
+  function openAdmin() {
+    document.getElementById('modalOverlay').classList.add('show');
+    loadRequests();
+  }
+
+  function closeAdmin() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.getElementById('navOrderBtn').classList.add('active');
+    document.getElementById('navAdminBtn').classList.remove('active');
+  }
+
+  async function loadRequests() {
+    const listEl = document.getElementById('requestsList');
+    listEl.innerHTML = '<div class="loading-state">Carregando pedidos...</div>';
+
+    try {
+      let items = [];
+
+      if (window.storage && typeof window.storage.list === 'function') {
+        const list = await window.storage.list('pedido:', true);
+        if (list && list.keys && list.keys.length > 0) {
+          const keys = list.keys.slice().sort().reverse();
+          for (const k of keys) {
+            try {
+              const r = await window.storage.get(k, true);
+              if (r && r.value) {
+                const parsed = JSON.parse(r.value);
+                parsed._key = k;
+                items.push(parsed);
+              }
+            } catch(e) {}
+          }
+        }
+      } else {
+        const keys = Object.keys(localStorage).filter(k => k.startsWith('pedido:')).sort().reverse();
+        for (const k of keys) {
+          try {
+            const val = localStorage.getItem(k);
+            if (val) {
+              const parsed = JSON.parse(val);
+              parsed._key = k;
+              items.push(parsed);
+            }
+          } catch(e) {}
+        }
+      }
+
+      currentItems = items;
+
+      if (items.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">Nenhum pedido recebido ainda.</div>';
+        return;
+      }
+
+      let html = '';
+      for (const it of items) {
+        const dt = new Date(it.data);
+        const dtStr = dt.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' às ' + dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+        const nome = escapeHtml(it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo'));
+        const texto = escapeHtml(it.pedido || '');
+        const keyAttr = escapeHtml(it._key);
+
+        html += `<div class="req-item">
+          <button class="req-del" onclick="deleteRequest('${keyAttr}')">excluir</button>
+          <div class="req-top">
+            <span class="req-name">${nome}</span>
+            <span class="req-date">${dtStr}</span>
+          </div>
+          <div class="req-text">${texto}</div>
+          ${it.sigilo ? '<span class="req-sigilo">🔒 Pedido em sigilo</span>' : ''}
+        </div>`;
+      }
+      listEl.innerHTML = html;
+    } catch(e) {
+      listEl.innerHTML = '<div class="empty-state">Não foi possível carregar os pedidos agora.</div>';
+    }
+  }
+
+  async function deleteRequest(key) {
+    if (!confirm('Deseja realmente excluir este pedido?')) return;
+
+    try {
+      if (window.storage && typeof window.storage.delete === 'function') {
+        await window.storage.delete(key, true);
+      } else {
+        localStorage.removeItem(key);
+      }
+      loadRequests();
+    } catch(e) {
+      alert('Não foi possível excluir este pedido agora.');
+    }
+  }
+
+  function toggleReport() {
+    const box = document.getElementById('reportBox');
+    const btn = document.getElementById('reportToggleBtn');
+
+    if (box.classList.contains('show')) {
+      box.classList.remove('show');
+      btn.textContent = 'Gerar relatório';
+      return;
+    }
+
+    if (currentItems.length === 0) {
+      alert('Não há pedidos para incluir no relatório ainda.');
+      return;
+    }
+
+    const ordered = currentItems.slice().reverse();
+    const hoje = new Date().toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'});
+    let texto = `🙏 Pedidos de Oração — ${hoje}\n\n`;
+
+    ordered.forEach((it, idx) => {
+      const nome = it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo');
+      texto += `${idx + 1}. ${nome}\n`;
+      texto += `   ${it.pedido}\n\n`;
+    });
+
+    texto += `"Orai uns pelos outros." — Tiago 5:16`;
+
+    document.getElementById('reportText').value = texto;
+    box.classList.add('show');
+    btn.textContent = 'Ocultar relatório';
+    document.getElementById('copyFeedback').style.display = 'none';
+  }
+
+  async function copyReport() {
+    const textarea = document.getElementById('reportText');
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      document.getElementById('copyFeedback').style.display = 'block';
+    } catch(e) {
+      textarea.select();
+      document.execCommand('copy');
+      document.getElementById('copyFeedback').style.display = 'block';
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+
 </body>
 </html>
