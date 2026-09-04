@@ -491,10 +491,9 @@
   <div class="card">
     <div class="card-head">
       <div class="logo-badge">
-        <!-- Logo atualizada via Imgur -->
         <img src="https://i.imgur.com/8Qp2o8g.png" alt="Logo da Igreja">
       </div>
-      <div class="greeting">A paz do Senhor!</div>
+      <div class="greeting">Bem-vindo ao formulário de pedido de oração.</div>
       <h1>Pedido de Oração</h1>
     </div>
 
@@ -520,10 +519,10 @@
               <div class="toggle-opt" id="optSim" onclick="setSigilo(true)">Sim</div>
               <div class="toggle-opt" id="optNao" onclick="setSigilo(false)">Não</div>
             </div>
-            <div class="toggle-hint">Seu pedido será tratado com sigilo. Ele será encaminhado ao nosso grupo de oração sem a identificação do seu nome. Apenas o pedido será compartilhado, para que possamos estar em oração por você.</div>
+            <div class="toggle-hint">Ao clicar em “Sim”, seu pedido será mantido em sigilo e enviado ao grupo de oração sem o seu nome. Apenas o pedido será compartilhado para intercessão.</div>
           </div>
 
-          <div class="error" id="errorMsg">Por favor, preencha seu nome e o pedido de oração.</div>
+          <div class="error" id="errorMsg">Por favor, preencha o campo de pedido de oração.</div>
           <button type="submit" class="submit" id="submitBtn" onclick="submitPrayer()">Enviar pedido</button>
         </form>
       </div>
@@ -576,7 +575,7 @@
   </button>
 </nav>
 
-<!-- Modal Área da Equipe sem PIN -->
+<!-- Modal Área da Equipe -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-head">
@@ -612,13 +611,18 @@
     { text: '"Não estejais inquietos por coisa alguma; antes as vossas petições sejam em tudo conhecidas diante de Deus pela oração e súplica, com ação de graças."', ref: 'Filipenses 4:6' },
     { text: '"Perseverai em oração, velando nela com ação de graças."', ref: 'Colossenses 4:2' },
     { text: '"Pedi, e dar-se-vos-á; buscai, e encontrareis; batei, e abrir-se-vos-á."', ref: 'Mateus 7:7' },
-    { text: '"E tudo o que pedirdes em oração, crendo, o recebereis."', ref: 'Mateus 21:22' }
+    { text: '"E tudo o que pedirdes em oração, crendo, o recebereis."', ref: 'Mateus 21:22' },
+    { text: '"E esta é a confiança que temos nele: que, se pedirmos alguma coisa, segundo a sua vontade, ele nos ouve."', ref: '1 João 5:14' }
   ];
 
-  window.addEventListener('DOMContentLoaded', () => {
+  function loadRandomVerse() {
     const randomVerse = verses[Math.floor(Math.random() * verses.length)];
     document.getElementById('verseText').textContent = randomVerse.text;
     document.getElementById('verseRef').textContent = randomVerse.ref;
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadRandomVerse();
   });
 
   function setSigilo(val) {
@@ -628,12 +632,13 @@
   }
 
   async function submitPrayer() {
-    const nome = document.getElementById('nome').value.trim();
+    const nomeInput = document.getElementById('nome').value.trim();
     const pedido = document.getElementById('pedido').value.trim();
     const errorMsg = document.getElementById('errorMsg');
     const btn = document.getElementById('submitBtn');
 
-    if (!nome || !pedido) {
+    if (!pedido) {
+      errorMsg.textContent = 'Por favor, preencha o campo de pedido de oração.';
       errorMsg.style.display = 'block';
       return;
     }
@@ -644,7 +649,8 @@
 
     const isSigilo = sigiloValue === true;
     const entry = {
-      nome: isSigilo ? 'Anônimo' : nome,
+      // Se for sigilo, o nome NUNCA é armazenado
+      nome: isSigilo ? 'Anônimo' : (nomeInput || 'Anônimo'),
       pedido: pedido,
       sigilo: isSigilo,
       data: new Date().toISOString()
@@ -680,9 +686,7 @@
     document.getElementById('confirmArea').classList.remove('show');
     document.getElementById('formArea').style.display = 'block';
 
-    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
-    document.getElementById('verseText').textContent = randomVerse.text;
-    document.getElementById('verseRef').textContent = randomVerse.ref;
+    loadRandomVerse();
   }
 
   function switchTab(tab) {
