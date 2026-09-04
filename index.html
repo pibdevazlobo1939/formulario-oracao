@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedido de Oração</title>
+  <title>Pedido de Oração - PIBVL</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -33,9 +33,10 @@
       background-position: center;
       min-height: 100vh;
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 30px 16px 40px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 30px 16px 20px;
     }
 
     .wrap {
@@ -127,17 +128,18 @@
     h1 {
       font-family: 'Lora', serif;
       font-weight: 600;
-      font-size: 26px;
+      font-size: 24px;
       line-height: 1.25;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .greeting {
       font-family: 'Lora', serif;
-      font-style: italic;
+      font-weight: 500;
       font-size: 15px;
       color: var(--sky-light);
       line-height: 1.4;
+      letter-spacing: 0.01em;
     }
 
     .card-body {
@@ -494,11 +496,22 @@
       padding: 30px 10px;
     }
 
+    /* Rodapé com créditos */
+    .footer-credits {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 20px;
+      padding-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
     @media (max-width: 480px) {
       .card-head { padding: 30px 20px 24px; }
       .card-body { padding: 24px 20px 20px; }
       .verse-block { padding: 18px 20px 22px; }
-      h1 { font-size: 22px; }
+      h1 { font-size: 21px; }
+      .greeting { font-size: 14px; }
     }
   </style>
 </head>
@@ -513,16 +526,16 @@
         <button class="dropdown-item" onclick="openAdmin()">Área da equipe</button>
       </div>
 
-      <!-- Logo da Igreja Atualizada com o Link ImgBB -->
+      <!-- Logo da Igreja -->
       <div class="logo-badge">
         <img src="https://i.ibb.co/v2H4KBX/logo-da-igreja.jpg" alt="Logo da Igreja">
       </div>
       
-      <!-- Mensagem em Destaque -->
+      <!-- Cabeçalho Simplificado -->
       <h1>Formulário de Pedido de Oração</h1>
       
-      <!-- Mensagem abaixo do Destaque -->
-      <div class="greeting">Permita-nos caminhar com você em oração. Compartilhe seu pedido conosco.🙏</div>
+      <!-- Nome da Igreja -->
+      <div class="greeting">Primeira Igreja Batista em Vaz Lobo</div>
     </div>
 
     <!-- Área do Formulário -->
@@ -585,6 +598,11 @@
       </div>
     </div>
   </div>
+
+  <!-- Rodapé com Crédito -->
+  <footer class="footer-credits">
+    Desenvolvido pela equipe de Comunicação PIBVL
+  </footer>
 </div>
 
 <!-- Modal Área da Equipe -->
