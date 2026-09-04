@@ -3,112 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Pedido de Oração</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Pedido de Oração</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
         }
-        .card-shadow {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        .segmented-btn input:checked + label {
+            background-color: #ffffff;
+            color: #1e3c72;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 600;
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen text-slate-800 antialiased">
+<body class="flex items-center justify-center p-4 py-8">
 
-    <!-- Container Principal -->
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div class="w-full max-w-xl bg-white rounded-2xl card-shadow border border-slate-100 overflow-hidden my-auto">
+    <div class="w-full max-w-lg">
+        
+        <!-- Topo / Cabeçalho -->
+        <div class="text-center text-white pb-6 pt-4 relative">
+            <p class="text-sm italic font-serif opacity-90 mb-1">A paz do Senhor!</p>
+            <h1 class="text-2xl font-bold tracking-wide">Bem-vindo ao formulário de pedido de oração</h1>
+        </div>
+
+        <!-- Cartão Branco do Formulário -->
+        <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 relative">
             
-            <!-- Cabeçalho / Logo e Título -->
-            <div class="pt-8 pb-6 px-6 text-center bg-slate-50 border-b border-slate-100">
-                <div class="flex justify-center mb-4">
-                    <img 
-                        src="logo da igreja.jpg" 
-                        alt="Logo da Igreja" 
-                        class="h-24 w-24 object-contain"
-                        onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'h-20 w-20 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-3xl shadow-sm\'><i class=\'fas fa-cross\'></i></div>';"
-                    />
+            <!-- Logo da Igreja (Centralizada no topo) -->
+            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                <div class="w-20 h-20 bg-white rounded-full p-1 shadow-md flex items-center justify-center">
+                    <img src="logo da igreja.jpg" alt="Logo Igreja" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full rounded-full bg-blue-100 flex items-center justify-center text-blue-700 text-2xl font-bold\'><i class=\'fas fa-cross\'></i></div>';">
                 </div>
-                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">
-                    Bem-vindo ao formulário de pedido de oração
-                </h1>
-                <p class="text-sm text-slate-500 mt-1">Estamos aqui para orar por você e pela sua família.</p>
             </div>
 
-            <!-- Formulário -->
-            <form id="prayerForm" class="p-6 sm:p-8 space-y-6" onsubmit="handleSubmit(event)">
+            <p class="text-slate-600 text-sm mt-4 mb-6 text-center leading-relaxed">
+                Você não precisa passar por tudo sozinho. Conte conosco! Deixe seu pedido de oração e estaremos intercedendo por você.
+            </p>
+
+            <form id="prayerForm" onsubmit="handleSubmit(event)" class="space-y-5">
                 
-                <!-- Nome -->
+                <!-- Campo Nome -->
                 <div>
-                    <label for="nome" class="block text-sm font-semibold text-slate-700 mb-1">
-                        Seu Nome <span class="text-xs font-normal text-slate-400">(opcional se optar por sigilo)</span>
-                    </label>
-                    <div class="relative rounded-lg shadow-sm">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <i class="fas fa-user text-sm"></i>
+                    <label for="nome" class="block text-sm font-bold text-slate-800 mb-1">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all text-sm">
+                </div>
+
+                <!-- Campo Pedido -->
+                <div>
+                    <label for="pedido" class="block text-sm font-bold text-slate-800 mb-1">Pedido de Oração</label>
+                    <textarea id="pedido" name="pedido" rows="4" required placeholder="Compartilhe aqui o que está em seu coração..."
+                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white transition-all text-sm resize-none"></textarea>
+                </div>
+
+                <!-- Opção de Sigilo -->
+                <div>
+                    <label class="block text-sm font-bold text-slate-800 mb-2">Deseja que seu pedido seja mantido em sigilo?</label>
+                    
+                    <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1 rounded-xl text-center text-sm segmented-btn">
+                        <div>
+                            <input type="radio" id="sigilo-sim" name="sigilo" value="Sim" class="hidden">
+                            <label for="sigilo-sim" class="block py-2 rounded-lg cursor-pointer text-slate-600 transition-all">Sim</label>
                         </div>
-                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo"
-                            class="block w-full pl-10 pr-4 py-3 text-slate-800 placeholder-slate-400 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <div>
+                            <input type="radio" id="sigilo-nao" name="sigilo" value="Não" checked class="hidden">
+                            <label for="sigilo-nao" class="block py-2 rounded-lg cursor-pointer text-slate-600 transition-all">Não</label>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Pedido de Oração -->
-                <div>
-                    <label for="pedido" class="block text-sm font-semibold text-slate-700 mb-1">
-                        Seu Pedido de Oração <span class="text-blue-600">*</span>
-                    </label>
-                    <textarea id="pedido" name="pedido" rows="4" required placeholder="Escreva aqui o seu pedido com detalhes..."
-                        class="block w-full px-4 py-3 text-slate-800 placeholder-slate-400 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"></textarea>
-                </div>
-
-                <!-- Sigilo -->
-                <div class="bg-blue-50/60 p-4 rounded-xl border border-blue-100">
-                    <label class="block text-sm font-semibold text-blue-950 mb-2">
-                        Manter este pedido em sigilo?
-                    </label>
-                    <p class="text-xs text-blue-900 leading-relaxed mb-3">
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">
                         Ao clicar em “Sim”, seu pedido será mantido em sigilo e enviado ao grupo de oração sem o seu nome. Apenas o pedido será compartilhado para intercessão.
                     </p>
-                    <div class="flex items-center space-x-6">
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="radio" name="sigilo" value="Sim" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <span class="ml-2 text-sm font-medium text-slate-700">Sim, manter sigilo</span>
-                        </label>
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="radio" name="sigilo" value="Não" checked class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <span class="ml-2 text-sm font-medium text-slate-700">Não (divulgar nome)</span>
-                        </label>
-                    </div>
                 </div>
 
-                <!-- Botão de Envio -->
-                <button type="submit"
-                    class="w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2">
-                    <i class="fas fa-paper-plane text-sm"></i>
-                    <span>Enviar Pedido de Oração</span>
+                <!-- Botão Enviar -->
+                <button type="submit" 
+                    class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-500 to-sky-500 hover:from-blue-600 hover:to-sky-600 text-white font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.99]">
+                    Enviar pedido
                 </button>
             </form>
 
-            <!-- Rodapé / Suporte via WhatsApp -->
-            <div class="bg-slate-50 border-t border-slate-100 p-6 text-center space-y-3">
-                <p class="text-xs text-slate-500">Precisa de suporte ou atendimento pastoral imediato?</p>
-                <a href="https://wa.me/5521966709417" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all duration-200">
-                    <i class="fab fa-whatsapp text-lg"></i>
-                    <span>Falar no WhatsApp (+55 21 96670-9417)</span>
-                </a>
+            <!-- Rodapé com Versículo e WhatsApp -->
+            <div class="mt-8 pt-6 border-t border-slate-100 text-center space-y-4">
+                <div>
+                    <p class="text-slate-700 italic font-serif text-sm">"E tudo o que pedirdes em oração, crendo, o recebereis."</p>
+                    <p class="text-xs text-slate-400 mt-0.5">Mateus 21:22</p>
+                </div>
+
+                <div class="pt-2">
+                    <a href="https://wa.me/5521966709417" target="_blank" rel="noopener noreferrer" 
+                        class="inline-flex items-center space-x-2 text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-100 transition-all">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>Falar no WhatsApp (+55 21 96670-9417)</span>
+                    </a>
+                </div>
             </div>
 
         </div>
-    </main>
+    </div>
 
     <script>
         function handleSubmit(event) {
