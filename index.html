@@ -87,4 +87,864 @@
       position: absolute;
       top: 48px;
       right: 14px;
-      background
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 30;
+      overflow: hidden;
+    }
+    .dropdown-menu.show { display: block; }
+
+    .dropdown-item {
+      display: block;
+      padding: 10px 16px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: underline;
+      cursor: pointer;
+      white-space: nowrap;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .dropdown-item:hover {
+      background: var(--ivory-warm);
+    }
+
+    .logo-badge {
+      width: 80px; height: 80px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      padding: 10px;
+      overflow: hidden;
+    }
+    .logo-badge img { width: 100%; height: 100%; object-fit: contain; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .greeting {
+      font-family: 'Lora', serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--sky-light);
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .card-body {
+      padding: 30px 30px 26px;
+    }
+
+    .intro {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], input[type="password"], textarea {
+      width: 100%;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(53,166,222,0.18);
+    }
+
+    textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+
+    /* Caixa de Atalho para Áudio via WhatsApp no Formulário */
+    .audio-wsp-banner {
+      background: #eafaf1;
+      border: 1.5px dashed #25D366;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .audio-wsp-banner p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .btn-audio-wsp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--wsp);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 16px;
+      border-radius: 9px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.25);
+      width: 100%;
+      transition: transform .1s ease;
+    }
+    .btn-audio-wsp:hover { transform: translateY(-1px); }
+    .btn-audio-wsp svg { width: 18px; height: 18px; fill: #fff; }
+
+    .toggle-row { display: flex; gap: 10px; }
+
+    .toggle-opt {
+      flex: 1;
+      text-align: center;
+      padding: 11px 10px;
+      border-radius: 10px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .15s ease;
+      user-select: none;
+    }
+
+    .toggle-opt.active-yes {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+
+    .toggle-opt.active-no {
+      background: var(--sky);
+      border-color: var(--sky);
+      color: #fff;
+    }
+
+    .toggle-hint {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    button.submit {
+      width: 100%;
+      border: none;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--sky) 100%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15.5px;
+      padding: 15px;
+      border-radius: 11px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 10px 24px -8px rgba(24,42,92,0.5);
+    }
+
+    button.submit:hover { transform: translateY(-1px); }
+    button.submit:active { transform: translateY(0); }
+    button.submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    .error {
+      color: #B4443B;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .verse-block {
+      text-align: center;
+      padding: 20px 30px 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .verse {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .verse-ref {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Estado de confirmação */
+    .confirm {
+      display: none;
+      padding: 40px 30px 35px;
+      text-align: center;
+    }
+    .confirm.show { display: block; }
+
+    .confirm-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--sky));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .confirm-icon svg { width: 26px; height: 26px; }
+
+    .confirm h2 {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .confirm p {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin: 0 auto 22px;
+    }
+
+    .wsp-box {
+      background: var(--ivory-warm);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 16px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .wsp-box h3 {
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .wsp-box p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .confirm-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-wsp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--wsp);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 9px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+    }
+
+    .btn-wsp svg { width: 18px; height: 18px; fill: #fff; }
+
+    .new-request {
+      background: none;
+      border: 1.5px solid var(--line);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 11px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* Modal Área da Equipe */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(16,29,66,0.6);
+      align-items: center; justify-content: center;
+      padding: 20px;
+      z-index: 50;
+      backdrop-filter: blur(3px);
+    }
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 85vh;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+
+    .modal-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-head h3 { font-family: 'Lora', serif; font-size: 18px; color: var(--navy); }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--ink-soft); line-height: 1; }
+
+    .modal-body { padding: 20px 22px; overflow-y: auto; }
+
+    /* Login Form Equipe */
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .login-box p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+    }
+
+    .report-bar { display: flex; gap: 10px; margin-bottom: 16px; }
+    .report-bar button {
+      flex: 1;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .report-bar button.secondary {
+      background: #fff;
+      color: var(--navy);
+      border: 1.5px solid var(--line);
+    }
+
+    .report-box { display: none; margin-bottom: 18px; }
+    .report-box.show { display: block; }
+    .report-box textarea {
+      width: 100%;
+      min-height: 200px;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink);
+      resize: vertical;
+    }
+
+    .report-copy-btn {
+      margin-top: 8px;
+      width: 100%;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--sky) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 11px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+
+    .copy-feedback {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ok);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .req-item {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .req-del {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: none;
+      border: none;
+      color: #B4443B;
+      font-size: 11.5px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .req-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; padding-right: 45px; }
+    .req-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+    .req-date { font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
+    .req-text { font-size: 13.5px; line-height: 1.5; color: var(--ink); word-break: break-word; }
+    .req-sigilo {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--ivory-warm);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .empty-state, .loading-state {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 13.5px;
+      padding: 30px 10px;
+    }
+
+    /* Rodapé com créditos */
+    .footer-credits {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 20px;
+      padding-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 480px) {
+      .card-head { padding: 30px 20px 24px; }
+      .card-body { padding: 24px 20px 20px; }
+      .verse-block { padding: 18px 20px 22px; }
+      h1 { font-size: 21px; }
+      .greeting { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="card">
+    <div class="card-head">
+      <button class="top-menu-btn" onclick="toggleDropdown(event)">&#8942;</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <button class="dropdown-item" onclick="openAdmin()">Área da equipe</button>
+      </div>
+
+      <div class="logo-badge">
+        <img src="https://i.ibb.co/v2H4KBX/logo-da-igreja.jpg" alt="Logo da Igreja">
+      </div>
+      
+      <h1>Formulário de Pedido de Oração</h1>
+      
+      <div class="greeting">Primeira Igreja Batista em Vaz Lobo</div>
+    </div>
+
+    <div id="formArea">
+      <div class="card-body">
+        <p class="intro">Você não precisa passar por tudo sozinho. Conte conosco! Deixe seu pedido de oração e estaremos intercedendo por você.</p>
+
+        <div class="audio-wsp-banner">
+          <p>🎙️ <strong>Prefere mandar em áudio?</strong> Ideal para quem tem dificuldade em digitar:</p>
+          <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20pedido%20de%20ora%C3%A7%C3%A3o%20em%20%C3%A1udio" target="_blank" class="btn-audio-wsp">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
+            Gravar / Enviar Áudio no WhatsApp
+          </a>
+        </div>
+
+        <form id="prayerForm" onsubmit="return false;">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="pedido">Pedido de Oração (Escrito)</label>
+            <textarea id="pedido" placeholder="Compartilhe aqui o que está em seu coração..."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Deseja que seu pedido seja mantido em sigilo?</label>
+            <div class="toggle-row">
+              <div class="toggle-opt" id="optSim" onclick="setSigilo(true)">Sim</div>
+              <div class="toggle-opt" id="optNao" onclick="setSigilo(false)">Não</div>
+            </div>
+            <div class="toggle-hint">Ao clicar em “Sim”, seu pedido será mantido em sigilo e enviado ao grupo de oração sem o seu nome. Apenas o pedido será compartilhado para intercessão.</div>
+          </div>
+
+          <div class="error" id="errorMsg">Por favor, preencha o campo de pedido de oração.</div>
+          <button type="submit" class="submit" id="submitBtn" onclick="submitPrayer()">Enviar pedido</button>
+        </form>
+      </div>
+
+      <div class="verse-block">
+        <div class="verse" id="verseText">"Orai sem cessar."</div>
+        <div class="verse-ref" id="verseRef">1 Tessalonicenses 5:17</div>
+      </div>
+    </div>
+
+    <div class="confirm" id="confirmArea">
+      <div class="confirm-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Pedido recebido</h2>
+      <p>Seu pedido foi enviado e será levado para o grupo de oração que estará orando no próximo culto de quarta-feira.</p>
+
+      <div class="wsp-box">
+        <h3>Quer conversar conosco?</h3>
+        <p>Se você sentir vontade de compartilhar algo, conversar ou receber mais informações, entre em contato conosco pelo WhatsApp da igreja. Estamos à disposição para te ouvir.</p>
+        <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20conversar" target="_blank" class="btn-wsp">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+
+      <div class="confirm-actions">
+        <button class="new-request" onclick="resetForm()">Enviar outro pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-credits">
+    Desenvolvido pela equipe de Comunicação PIBVL
+  </footer>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Área da equipe</h3>
+      <button class="modal-close" onclick="closeAdmin()">&times;</button>
+    </div>
+
+    <div class="modal-body" id="modalBodyLogin">
+      <div class="login-box">
+        <p>Por favor, insira a senha de acesso para visualizar os pedidos:</p>
+        <div class="field">
+          <input type="password" id="adminPass" placeholder="Digite a senha" onkeydown="if(event.key==='Enter') checkAdminPass()">
+          <div class="error" id="passErrorMsg">Senha incorreta. Tente novamente.</div>
+        </div>
+        <button class="submit" onclick="checkAdminPass()">Acessar</button>
+      </div>
+    </div>
+
+    <div class="modal-body" id="modalBodyLogged" style="display: none;">
+      <div class="report-bar">
+        <button onclick="toggleReport()" id="reportToggleBtn">Gerar relatório</button>
+        <button class="secondary" onclick="loadRequests()">Atualizar lista</button>
+      </div>
+
+      <div class="report-box" id="reportBox">
+        <textarea id="reportText" readonly></textarea>
+        <button class="report-copy-btn" onclick="copyReport()">Copiar texto do relatório</button>
+        <div class="copy-feedback" id="copyFeedback">Copiado! Cole no grupo de oração.</div>
+      </div>
+
+      <div id="requestsList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let sigiloValue = null;
+  let currentItems = [];
+  let isAuthenticated = false;
+
+  const verses = [
+    { text: '"Orai sem cessar."', ref: '1 Tessalonicenses 5:17' },
+    { text: '"Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes e firmes que não sabes."', ref: 'Jeremias 33:3' },
+    { text: '"Confessai as vossas culpas uns aos outros, e orai uns pelos outros, para que sereis curados. A oração feita por um justo pode muito em seus efeitos."', ref: 'Tiago 5:16' },
+    { text: '"Não estejais inquietos por coisa alguma; antes as vossas petições sejam em tudo conhecidas diante de Deus pela oração e súplica, com ação de graças."', ref: 'Filipenses 4:6' },
+    { text: '"Perseverai em oração, velando nela com ação de graças."', ref: 'Colossenses 4:2' },
+    { text: '"Pedi, e dar-se-vos-á; buscai, e encontrareis; batei, e abrir-se-vos-á."', ref: 'Mateus 7:7' },
+    { text: '"E tudo o que pedirdes em oração, crendo, o recebereis."', ref: 'Mateus 21:22' },
+    { text: '"E esta é a confiança que temos nele: que, se pedirmos alguma coisa, segundo a sua vontade, ele nos ouve."', ref: '1 João 5:14' }
+  ];
+
+  function loadRandomVerse() {
+    const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+    document.getElementById('verseText').textContent = randomVerse.text;
+    document.getElementById('verseRef').textContent = randomVerse.ref;
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    loadRandomVerse();
+  });
+
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('dropdownMenu').classList.toggle('show');
+  }
+
+  document.addEventListener('click', () => {
+    document.getElementById('dropdownMenu').classList.remove('show');
+  });
+
+  function setSigilo(val) {
+    sigiloValue = val;
+    document.getElementById('optSim').classList.toggle('active-yes', val === true);
+    document.getElementById('optNao').classList.toggle('active-no', val === false);
+  }
+
+  async function submitPrayer() {
+    const nomeInput = document.getElementById('nome').value.trim();
+    const pedido = document.getElementById('pedido').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+    const btn = document.getElementById('submitBtn');
+
+    if (!pedido) {
+      errorMsg.textContent = 'Por favor, preencha o campo de pedido de oração.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    errorMsg.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const isSigilo = sigiloValue === true;
+    const entry = {
+      nome: isSigilo ? 'Anônimo' : (nomeInput || 'Anônimo'),
+      pedido: pedido,
+      sigilo: isSigilo,
+      data: new Date().toISOString()
+    };
+
+    try {
+      const id = 'pedido:' + Date.now() + ':' + Math.random().toString(36).slice(2,8);
+      
+      if (window.storage && typeof window.storage.set === 'function') {
+        await window.storage.set(id, JSON.stringify(entry), true);
+      } else {
+        localStorage.setItem(id, JSON.stringify(entry));
+      }
+
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('confirmArea').classList.add('show');
+    } catch (e) {
+      errorMsg.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+      errorMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Enviar pedido';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('nome').value = '';
+    document.getElementById('pedido').value = '';
+    setSigilo(null);
+    document.getElementById('optSim').classList.remove('active-yes');
+    document.getElementById('optNao').classList.remove('active-no');
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Enviar pedido';
+    document.getElementById('confirmArea').classList.remove('show');
+    document.getElementById('formArea').style.display = 'block';
+
+    loadRandomVerse();
+  }
+
+  function openAdmin() {
+    document.getElementById('dropdownMenu').classList.remove('show');
+    document.getElementById('modalOverlay').classList.add('show');
+    if (isAuthenticated) {
+      document.getElementById('modalBodyLogin').style.display = 'none';
+      document.getElementById('modalBodyLogged').style.display = 'block';
+      loadRequests();
+    } else {
+      document.getElementById('modalBodyLogin').style.display = 'block';
+      document.getElementById('modalBodyLogged').style.display = 'none';
+      document.getElementById('adminPass').value = '';
+      document.getElementById('passErrorMsg').style.display = 'none';
+    }
+  }
+
+  function checkAdminPass() {
+    const pass = document.getElementById('adminPass').value.trim();
+    const passError = document.getElementById('passErrorMsg');
+
+    if (pass === '1939') {
+      isAuthenticated = true;
+      passError.style.display = 'none';
+      document.getElementById('modalBodyLogin').style.display = 'none';
+      document.getElementById('modalBodyLogged').style.display = 'block';
+      loadRequests();
+    } else {
+      passError.style.display = 'block';
+    }
+  }
+
+  function closeAdmin() {
+    document.getElementById('modalOverlay').classList.remove('show');
+  }
+
+  async function loadRequests() {
+    const listEl = document.getElementById('requestsList');
+    listEl.innerHTML = '<div class="loading-state">Carregando pedidos...</div>';
+
+    try {
+      let items = [];
+
+      if (window.storage && typeof window.storage.list === 'function') {
+        const list = await window.storage.list('pedido:', true);
+        if (list && list.keys && list.keys.length > 0) {
+          const keys = list.keys.slice().sort().reverse();
+          for (const k of keys) {
+            try {
+              const r = await window.storage.get(k, true);
+              if (r && r.value) {
+                const parsed = JSON.parse(r.value);
+                parsed._key = k;
+                items.push(parsed);
+              }
+            } catch(e) {}
+          }
+        }
+      } else {
+        const keys = Object.keys(localStorage).filter(k => k.startsWith('pedido:')).sort().reverse();
+        for (const k of keys) {
+          try {
+            const val = localStorage.getItem(k);
+            if (val) {
+              const parsed = JSON.parse(val);
+              parsed._key = k;
+              items.push(parsed);
+            }
+          } catch(e) {}
+        }
+      }
+
+      currentItems = items;
+
+      if (items.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">Nenhum pedido recebido ainda.</div>';
+        return;
+      }
+
+      let html = '';
+      for (const it of items) {
+        const dt = new Date(it.data);
+        const dtStr = dt.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' às ' + dt.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+        const nome = escapeHtml(it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo'));
+        const texto = escapeHtml(it.pedido || '');
+        const keyAttr = escapeHtml(it._key);
+
+        html += `<div class="req-item">
+          <button class="req-del" onclick="deleteRequest('${keyAttr}')">excluir</button>
+          <div class="req-top">
+            <span class="req-name">${nome}</span>
+            <span class="req-date">${dtStr}</span>
+          </div>
+          <div class="req-text">${texto}</div>
+          ${it.sigilo ? '<span class="req-sigilo">🔒 Pedido em sigilo</span>' : ''}
+        </div>`;
+      }
+      listEl.innerHTML = html;
+    } catch(e) {
+      listEl.innerHTML = '<div class="empty-state">Não foi possível carregar os pedidos agora.</div>';
+    }
+  }
+
+  async function deleteRequest(key) {
+    if (!confirm('Deseja realmente excluir este pedido?')) return;
+
+    try {
+      if (window.storage && typeof window.storage.delete === 'function') {
+        await window.storage.delete(key, true);
+      } else {
+        localStorage.removeItem(key);
+      }
+      loadRequests();
+    } catch(e) {
+      alert('Não foi possível excluir este pedido agora.');
+    }
+  }
+
+  function toggleReport() {
+    const box = document.getElementById('reportBox');
+    const btn = document.getElementById('reportToggleBtn');
+
+    if (box.classList.contains('show')) {
+      box.classList.remove('show');
+      btn.textContent = 'Gerar relatório';
+      return;
+    }
+
+    if (currentItems.length === 0) {
+      alert('Não há pedidos para incluir no relatório ainda.');
+      return;
+    }
+
+    const ordered = currentItems.slice().reverse();
+    const hoje = new Date().toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric'});
+    let texto = `🙏 Pedidos de Oração — ${hoje}\n\n`;
+
+    ordered.forEach((it, idx) => {
+      const nome = it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo');
+      texto += `${idx + 1}. ${nome}\n`;
+      texto += `    ${it.pedido}\n\n`;
+    });
+
+    texto += `"Orai uns pelos outros." — Tiago 5:16`;
+
+    document.getElementById('reportText').value = texto;
+    box.classList.add('show');
+    btn.textContent = 'Ocultar relatório';
+    document.getElementById('copyFeedback').style.display = 'none';
+  }
+
+  async function copyReport() {
+    const textarea = document.getElementById('reportText');
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      document.getElementById('copyFeedback').style.display = 'block';
+    } catch(e) {
+      textarea.select();
+      document.execCommand('copy');
+      document.getElementById('copyFeedback').style.display = 'block';
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+</script>
+
+</body>
+</html>
