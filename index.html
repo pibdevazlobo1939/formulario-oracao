@@ -183,42 +183,6 @@
 
     textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
 
-    /* Caixa de Atalho para Áudio via WhatsApp no Formulário */
-    .audio-wsp-banner {
-      background: #eafaf1;
-      border: 1.5px dashed #25D366;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .audio-wsp-banner p {
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-
-    .btn-audio-wsp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--wsp);
-      color: #fff;
-      font-weight: 700;
-      font-size: 13.5px;
-      padding: 10px 16px;
-      border-radius: 9px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37,211,102,0.25);
-      width: 100%;
-      transition: transform .1s ease;
-    }
-    .btn-audio-wsp:hover { transform: translateY(-1px); }
-    .btn-audio-wsp svg { width: 18px; height: 18px; fill: #fff; }
-
     .toggle-row { display: flex; gap: 10px; }
 
     .toggle-opt {
@@ -556,31 +520,28 @@
 <div class="wrap">
   <div class="card">
     <div class="card-head">
+      <!-- Botão Discreto de 3 Pontos -->
       <button class="top-menu-btn" onclick="toggleDropdown(event)">&#8942;</button>
       <div class="dropdown-menu" id="dropdownMenu">
         <button class="dropdown-item" onclick="openAdmin()">Área da equipe</button>
       </div>
 
+      <!-- Logo da Igreja -->
       <div class="logo-badge">
         <img src="https://i.ibb.co/v2H4KBX/logo-da-igreja.jpg" alt="Logo da Igreja">
       </div>
       
+      <!-- Cabeçalho Simplificado -->
       <h1>Formulário de Pedido de Oração</h1>
       
+      <!-- Nome da Igreja -->
       <div class="greeting">Primeira Igreja Batista em Vaz Lobo</div>
     </div>
 
+    <!-- Área do Formulário -->
     <div id="formArea">
       <div class="card-body">
         <p class="intro">Você não precisa passar por tudo sozinho. Conte conosco! Deixe seu pedido de oração e estaremos intercedendo por você.</p>
-
-        <div class="audio-wsp-banner">
-          <p>🎙️ <strong>Prefere mandar em áudio?</strong> Ideal para quem tem dificuldade em digitar:</p>
-          <a href="https://wa.me/5521966709417?text=Ol%C3%A1%2C%20gostaria%20de%20enviar%20meu%20pedido%20de%20ora%C3%A7%C3%A3o%20em%20%C3%A1udio" target="_blank" class="btn-audio-wsp">
-            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.228-1.157z"/></svg>
-            Gravar / Enviar Áudio no WhatsApp
-          </a>
-        </div>
 
         <form id="prayerForm" onsubmit="return false;">
           <div class="field">
@@ -589,7 +550,7 @@
           </div>
 
           <div class="field">
-            <label for="pedido">Pedido de Oração (Escrito)</label>
+            <label for="pedido">Pedido de Oração</label>
             <textarea id="pedido" placeholder="Compartilhe aqui o que está em seu coração..."></textarea>
           </div>
 
@@ -613,6 +574,7 @@
       </div>
     </div>
 
+    <!-- Tela de Confirmação -->
     <div class="confirm" id="confirmArea">
       <div class="confirm-icon">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -637,11 +599,13 @@
     </div>
   </div>
 
+  <!-- Rodapé com Crédito -->
   <footer class="footer-credits">
     Desenvolvido pela equipe de Comunicação PIBVL
   </footer>
 </div>
 
+<!-- Modal Área da Equipe -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-head">
@@ -649,6 +613,7 @@
       <button class="modal-close" onclick="closeAdmin()">&times;</button>
     </div>
 
+    <!-- Tela de Login -->
     <div class="modal-body" id="modalBodyLogin">
       <div class="login-box">
         <p>Por favor, insira a senha de acesso para visualizar os pedidos:</p>
@@ -660,6 +625,7 @@
       </div>
     </div>
 
+    <!-- Conteúdo do Painel (Exibido após senha correta) -->
     <div class="modal-body" id="modalBodyLogged" style="display: none;">
       <div class="report-bar">
         <button onclick="toggleReport()" id="reportToggleBtn">Gerar relatório</button>
@@ -913,7 +879,7 @@
     ordered.forEach((it, idx) => {
       const nome = it.sigilo ? 'Anônimo' : (it.nome || 'Anônimo');
       texto += `${idx + 1}. ${nome}\n`;
-      texto += `    ${it.pedido}\n\n`;
+      texto += `   ${it.pedido}\n\n`;
     });
 
     texto += `"Orai uns pelos outros." — Tiago 5:16`;
